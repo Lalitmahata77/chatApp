@@ -1,8 +1,8 @@
 import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
-//  import { getReceiverSocketId, io } from "../socket/socket.js";
+  import { getReceiverSocketId, io } from "../soket/soket.js";
 
-export const sendMessage = async (req, res) => {
+  export const sendMessage = async (req, res) => {
 	try {
 		const { message } = req.body;
 		const { id: receiverId } = req.params;
@@ -10,9 +10,7 @@ export const sendMessage = async (req, res) => {
 
 		let conversation = await Conversation.findOne({
 			participants: { $all: [senderId, receiverId] },
-            
 		});
-        // console.log(conversation);
 
 		if (!conversation) {
 			conversation = await Conversation.create({
@@ -23,9 +21,9 @@ export const sendMessage = async (req, res) => {
 		const newMessage = new Message({
 			senderId,
 			receiverId,
-			message 
+			message,
 		});
-console.log(newMessage);
+
 		if (newMessage) {
 			conversation.message.push(newMessage._id);
 		}
@@ -37,11 +35,11 @@ console.log(newMessage);
 		await Promise.all([conversation.save(), newMessage.save()]);
 
 		// SOCKET IO FUNCTIONALITY WILL GO HERE
-	// const 	receiverSocketId = getReceiverSocketId(receiverId);
-	// 	if (receiverSocketId) {
-	// 		// io.to(<socket_id>).emit() used to send events to specific client
-	// 		io.to(receiverSocketId).emit("newMessage", newMessage);
-	// 	}
+		const receiverSocketId = getReceiverSocketId(receiverId);
+		if (receiverSocketId) {
+			// io.to(<socket_id>).emit() used to send events to specific client
+			io.to(receiverSocketId).emit("newMessage", newMessage);
+		}
 
 		res.status(201).json(newMessage);
 	} catch (error) {
