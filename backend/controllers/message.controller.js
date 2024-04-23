@@ -25,7 +25,7 @@ import Message from "../models/message.model.js";
 		});
 
 		if (newMessage) {
-			conversation.message.push(newMessage._id);
+			conversation.messages.push(newMessage._id);
 		}
 
 		// await conversation.save();
@@ -59,7 +59,7 @@ export const getMessages = async (req, res) => {
 
 		if (!conversation) return res.status(200).json([]);
 
-		const messages = conversation.message;
+		const messages = conversation.messages;
 
 		res.status(200).json(messages);
 	} catch (error) {

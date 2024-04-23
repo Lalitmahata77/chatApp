@@ -30,27 +30,27 @@ const Signup = () => {
 
 			<div className='w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
 				<h1 className='text-3xl font-semibold text-center text-gray-300'>
-					Sign Up <span className='text-blue-500'> ChatApp</span>
+					Sign Up <span className=' text-green-700'> ChatApp</span>
 				</h1>
 
 				<form onSubmit={handleSubmit}>
 					<div>
 						<label className='label p-2'>
-							<span className='text-base label-text'>Full Name</span>
+							<span className='text-base label-text text-cyan-300'>Full Name</span>
 						</label>
-						<input type='text' placeholder='John Doe' className='w-full input input-bordered  h-10' value={input.fullName} onChange={(e)=> setInput({...input, fullName: e.target.value})}/>
+						<input type='text' placeholder='fullName' className='w-full input input-bordered  h-10' value={input.fullName} onChange={(e)=> setInput({...input, fullName: e.target.value})}/>
 					</div>
 
 					<div>
 						<label className='label p-2 '>
-							<span className='text-base label-text'>Username</span>
+							<span className='text-base label-text text-cyan-300'>Username</span>
 						</label>
-						<input type='text' placeholder='johndoe' className='w-full input input-bordered h-10' value={input.username} onChange={(e) => setInput({...input, username : e.target.value})}/>
+						<input type='text' placeholder='Username' className='w-full input input-bordered h-10' value={input.username} onChange={(e) => setInput({...input, username : e.target.value})}/>
 					</div>
 
 					<div>
 						<label className='label'>
-							<span className='text-base label-text'>Password</span>
+							<span className='text-base label-text text-cyan-300'>Password</span>
 						</label>
 						<input
 							type='password'
@@ -64,7 +64,7 @@ const Signup = () => {
 
 					<div>
 						<label className='label'>
-							<span className='text-base label-text'>Confirm Password</span>
+							<span className='text-base label-text text-cyan-300'>Confirm Password</span>
 						</label>
 						<input
 							type='password'
@@ -75,9 +75,9 @@ const Signup = () => {
 						/>
 					</div>
 
-					<GenderCheckbox onCheckbocChange = {handleCheckboxChange} selectGender ={input.gender}/>
+					<GenderCheckbox onCheckbocChange = {handleCheckboxChange} selectGender ={input.gender} />
 
-					<Link to={"/login"} className='text-sm hover:underline hover:text-blue-600 mt-2 inline-block' href='#'>
+					<Link to={"/login"} className='text-sm hover:underline text-cyan-300 hover:text-blue-600 mt-2 inline-block' href='#'>
 						Already have an account?
 					</Link>
 
